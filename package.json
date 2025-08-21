@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js",
+    "dev": "node --env-file=.env --watch  dist/server.js",
+    "watch": "tsc -w ",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "format:check": "prettier . --check",
@@ -14,7 +15,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "lint-staged": {
     "*.ts": [
       "npm run lint:fix",
@@ -26,6 +27,7 @@
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "http-status": "^2.1.0",
     "mongoose": "^8.17.1",
     "uuid": "^11.1.0",
     "zod": "^4.0.17"
@@ -34,6 +36,8 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@eslint/js": "^9.33.0",
+    "@types/bcrypt": "^6.0.0",
+    "@types/express": "^5.0.3",
     "@types/node": "^24.2.1",
     "eslint": "^9.33.0",
     "eslint-config-prettier": "^10.1.8",
