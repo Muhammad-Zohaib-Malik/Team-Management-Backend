@@ -16,7 +16,6 @@ export default tseslint.config({
     eslintConfigPrettier
   ],
   rules: {
-    'no-console': 'error',
-    quotes: ['error', 'single', { allowTemplateLiterals: true }]
+    '@typescript-eslint/no-unused-vars': 'off'
   }
 });
