@@ -4,7 +4,6 @@
     "module": "NodeNext",
     "rootDir": "src",
     "moduleResolution": "nodenext",
-    "outDir": "dist",
-    "strict": true
+    "outDir": "dist"
   }
 }
