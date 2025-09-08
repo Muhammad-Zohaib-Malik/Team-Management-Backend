@@ -1,10 +1,12 @@
 import express, { Request, Response } from 'express';
 import { config } from './config/app.config.js';
 import connectDB from './config/db.config.js';
-import { errorHandler } from './middlewares/error.middleware.js';
-import { asyncHandler } from './middlewares/asyncHandler.middleware.js';
 import status from 'http-status';
+import { asyncHandler } from './middlewares/asyncHandler-middleware.js';
+import { errorHandler } from './middlewares/error-handler/error.middleware.js';
+import authRoutes from './routes/auth.route.js';
 const app = express();
+app.use(express.json());
 
 const PORT = config.PORT;
 
@@ -18,6 +20,8 @@ app.get(
     });
   })
 );
+
+app.use('/api/auth', authRoutes);
 
 app.use(errorHandler);
 
