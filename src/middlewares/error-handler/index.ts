@@ -2,13 +2,13 @@ import status from 'http-status';
 export class AppError extends Error {
   public readonly statusCode: number;
   public readonly success: boolean = false;
-  public readonly details?: any;
+  public readonly details?: unknown;
 
   constructor(
     message: string,
     statusCode: number,
     success: boolean,
-    details?: any
+    details?: unknown
   ) {
     super(message);
     this.statusCode = statusCode;
@@ -19,40 +19,40 @@ export class AppError extends Error {
 }
 
 export class NotFoundError extends AppError {
-  constructor(message = 'Resource Not Found', details?: any) {
+  constructor(message = 'Resource Not Found', details?: unknown) {
     super(message, status.NOT_FOUND, false, details);
   }
 }
 
 export class UserAlreadyExistsError extends AppError {
-  constructor(message = 'User Already Exists', details?: any) {
+  constructor(message = 'User Already Exists', details?: unknown) {
     super(message, status.CONFLICT, false, details);
   }
 }
 
 export class ValidationError extends AppError {
-  constructor(message = 'Validation Error', details?: any) {
+  constructor(message = 'Validation Error', details?: unknown) {
     super(message, status.BAD_REQUEST, false, details);
   }
 }
 export class UnauthorizedError extends AppError {
-  constructor(message = 'Unauthorized', details?: any) {
+  constructor(message = 'Unauthorized', details?: unknown) {
     super(message, status.UNAUTHORIZED, false, details);
   }
 }
 
 export class ForbiddenError extends AppError {
-  constructor(message = 'Forbidden', details?: any) {
+  constructor(message = 'Forbidden', details?: unknown) {
     super(message, status.FORBIDDEN, false, details);
   }
 }
 export class InternalServerError extends AppError {
-  constructor(message = 'Internal Server Error', details?: any) {
+  constructor(message = 'Internal Server Error', details?: unknown) {
     super(message, status.INTERNAL_SERVER_ERROR, false, details);
   }
 }
 export class BadRequestError extends AppError {
-  constructor(message = 'Bad Request', details?: any) {
+  constructor(message = 'Bad Request', details?: unknown) {
     super(message, status.BAD_REQUEST, false, details);
   }
 }
