@@ -75,3 +75,31 @@ export const registerService = async (data: {
     await session.endSession();
   }
 };
+
+export const loginService = async (data: {
+  email: string;
+  password: string;
+}) => {
+  const { email, password } = data;
+
+  const user = await UserModel.findOne({ email }).select('+password');
+  if (!user) {
+    throw new NotFoundError('User not found');
+  }
+
+  if (!user.isActive) {
+    throw new NotFoundError(
+      'Your account is deactivated. Please contact support.'
+    );
+  }
+
+  const isMatch = await user.comparePassword(password);
+  if (!isMatch) {
+    throw new NotFoundError('Invalid credentials');
+  }
+
+  await user.updateLogin();
+  const userWithoutPassword = user.omitPassword();
+
+  return { user: userWithoutPassword };
+};
