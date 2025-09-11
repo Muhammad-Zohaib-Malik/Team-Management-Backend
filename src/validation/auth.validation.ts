@@ -29,3 +29,9 @@ export const createUserSchema = z.object({
   isActive: z.boolean().default(true),
   lastLogin: z.date().nullable().optional()
 });
+
+// Schema for user login
+export const loginUserSchema = createUserSchema.pick({
+  email: true,
+  password: true
+});
