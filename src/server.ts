@@ -2,11 +2,13 @@ import express, { Request, Response } from 'express';
 import { config } from './config/app.config.js';
 import connectDB from './config/db.config.js';
 import status from 'http-status';
+import cookieParser from 'cookie-parser';
 import { asyncHandler } from './middlewares/asyncHandler-middleware.js';
 import { errorHandler } from './middlewares/error-handler/error.middleware.js';
 import authRoutes from './routes/auth.route.js';
 const app = express();
 app.use(express.json());
+app.use(cookieParser(config.COOKIE_PARSER_SECRET));
 
 const PORT = config.PORT;
 
