@@ -51,11 +51,27 @@ export const loginController = async (
       sameSite: 'lax',
       httpOnly: true,
       secure: true,
+      signed: true,
       maxAge: 60 * 60 * 1000
     });
     res.status(status.OK).json({
       message: 'user logged in successfully',
       user
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const logoutController = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    res.clearCookie('sid');
+    res.status(status.OK).json({
+      message: 'user logged out successfully'
     });
   } catch (error) {
     next(error);
