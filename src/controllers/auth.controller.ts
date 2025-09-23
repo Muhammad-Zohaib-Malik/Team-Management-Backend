@@ -6,8 +6,7 @@ import {
 import status from 'http-status';
 import { loginService, registerService } from '../services/auth.service.js';
 import { SessionModel } from '../models/session.model.js';
-import { AuthRequest } from '../middlewares/auth.middleware.js';
-import { UnauthorizedError } from '../middlewares/error-handler/index.js';
+
 export const registerController = async (
   req: Request,
   res: Response,
@@ -74,24 +73,6 @@ export const logoutController = (
     res.clearCookie('sid');
     res.status(status.OK).json({
       message: 'user logged out successfully'
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const getCurrentUser = (
-  req: AuthRequest,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const user = req.user;
-    if (!user) {
-      throw new UnauthorizedError('User is not authenticated');
-    }
-    res.status(status.OK).json({
-      user
     });
   } catch (error) {
     next(error);
